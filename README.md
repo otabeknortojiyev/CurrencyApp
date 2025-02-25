@@ -19,4 +19,4 @@ All currencies in phone and cryptocurrencies.
 1. Клонируйте репозиторий:
 
 ```bash
-git clone https://github.com/otabeknortojiyev/NOTEJON.git
+git clone https://github.com/otabeknortojiyev/CurrencyApp.git
