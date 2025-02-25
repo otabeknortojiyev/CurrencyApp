@@ -13,3 +13,10 @@ All currencies in phone and cryptocurrencies.
   <img src="https://drive.google.com/uc?export=view&id=1ZME8s9MmCaEWJXbg9qdjimUpxpGFOVsJ" width="10%" />
   <img src="https://drive.google.com/uc?export=view&id=1fJGMBIlBaTDxF8oGAGvVrwFP5FsPkFsA" width="10%" />
 </p>
+
+## ⚙️ Установка и запуск
+
+1. Клонируйте репозиторий:
+
+```bash
+git clone https://github.com/otabeknortojiyev/NOTEJON.git
