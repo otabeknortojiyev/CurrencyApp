@@ -3,7 +3,7 @@
 All currencies and cryptocurrencies in phone.
 
 
-## 📸 Скриншоты
+## 📸 Screenshots
 
 <p float="left">
   <img src="https://drive.google.com/uc?export=view&id=1cCiFFiD7xyhi2-S8nvBHjC8HIV33eXcT" width="10%" />
@@ -14,9 +14,9 @@ All currencies and cryptocurrencies in phone.
   <img src="https://drive.google.com/uc?export=view&id=1fJGMBIlBaTDxF8oGAGvVrwFP5FsPkFsA" width="10%" />
 </p>
 
-## ⚙️ Установка и запуск
+## ⚙️ Installation and launch
 
-1. Клонируйте репозиторий:
+1. Clone the repository:
 
 ```bash
 git clone https://github.com/otabeknortojiyev/CurrencyApp.git
