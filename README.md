@@ -1,6 +1,6 @@
 # currency_app
 
-All currencies in phone and cryptocurrencies.
+All currencies and cryptocurrencies in phone.
 
 
 ## 📸 Скриншоты
