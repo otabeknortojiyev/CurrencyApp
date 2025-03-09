@@ -17,3 +17,5 @@ class AddCryptoToFavoriteEvent extends CryptoPageEvent {
 
   AddCryptoToFavoriteEvent({required this.cryptoId});
 }
+
+class DoNotShowCaseViewEvent extends CryptoPageEvent {}

@@ -18,9 +18,10 @@ class CurrencyPageBloc extends Bloc<CurrencyPageEvent, CurrencyPageState> {
     on<GetCurrencyEvent>((event, emit) async {
       try {
         emit(state.copyWith(status: CurrencyPageStatus.loading));
+        final showCaseView = await repository.getCurrencyShowCaseView();
         final result = await service.getCurrency();
         final langStatus = await repository.getLanguage();
-        emit(state.copyWith(status: CurrencyPageStatus.success, data: result, langStatus: langStatus));
+        emit(state.copyWith(status: CurrencyPageStatus.success, data: result, langStatus: langStatus, showCaseView: showCaseView));
       } on DioException catch (e) {
         emit(state.copyWith(errorMessage: e.response?.statusMessage, status: CurrencyPageStatus.fail));
       }
@@ -51,6 +52,10 @@ class CurrencyPageBloc extends Bloc<CurrencyPageEvent, CurrencyPageState> {
 
     on<AddCurrencyToFavoriteEvent>((event, emit) async {
       await repository2.addCurrency(CurrencyModelSqfLite(ccy: event.ccy));
+    });
+
+    on<DoNotShowCaseViewEvent>((event, emit) async {
+      await repository.setCurrencyShowCaseView();
     });
   }
 }

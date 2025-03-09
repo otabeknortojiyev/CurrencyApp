@@ -46,6 +46,7 @@ dependencies:
   lucide_icons: ^0.257.0
   flutter_animate: ^4.2.0
   motion: ^2.0.1
+  showcaseview: ^4.0.1
 
 dev_dependencies:
   flutter_test:

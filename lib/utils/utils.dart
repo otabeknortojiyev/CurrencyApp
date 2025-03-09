@@ -48,4 +48,3 @@ String formatNumberDouble(double number) {
     return number.toStringAsFixed(1);
   }
 }
-

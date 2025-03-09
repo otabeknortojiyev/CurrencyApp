@@ -3,8 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 import '../../items/crypto_item.dart';
+import '../../items/show_case_template.dart';
 import 'bloc.dart';
 import 'state.dart';
 
@@ -24,12 +26,21 @@ class _CryptoPageState extends State<CryptoPage> with TickerProviderStateMixin {
   int currentPage = 1;
   bool _isSearching = false;
   final TextEditingController _searchController = TextEditingController();
+  final GlobalKey cryptoItem = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (BuildContext context) => CryptoPageBloc()..add(GetCryptoEvent(start: 0)),
-      child: BlocListener<CryptoPageBloc, CryptoPageState>(listener: (context, state) {}, child: Builder(builder: (context) => _buildPage(context))),
+      child: BlocListener<CryptoPageBloc, CryptoPageState>(
+        listener: (context, state) {
+          if (state.showCaseView != null && state.showCaseView == false) {
+            ShowCaseWidget.of(context).startShowCase([cryptoItem]);
+            context.read<CryptoPageBloc>().add(DoNotShowCaseViewEvent());
+          }
+        },
+        child: Builder(builder: (context) => _buildPage(context)),
+      ),
     );
   }
 
@@ -138,14 +149,34 @@ class _CryptoPageState extends State<CryptoPage> with TickerProviderStateMixin {
                           return ListView.builder(
                             itemCount: state.list!.length,
                             itemBuilder: (context, index) {
-                              return CryptoItem(
-                                crypto: state.list![index],
-                                time: state.data!.info!.time!,
-                                onDoubleTap: () {
-                                  widget.addedToFavorite();
-                                  bloc.add(AddCryptoToFavoriteEvent(cryptoId: state.list![index].id!));
-                                },
-                              );
+                              return index == 0
+                                  ? ShowCaseTemplate(
+                                    total: 1,
+                                    globalKey: cryptoItem,
+                                    isFinished: true,
+                                    height: 100,
+                                    width: MediaQuery.of(context).size.width * 0.5,
+                                    shape: RoundedRectangleBorder(),
+                                    isTitleRequired: false,
+                                    description: "If you double tap on a crypto, it will be added to your favorites.",
+                                    currentShowCase: "1",
+                                    child: CryptoItem(
+                                      crypto: state.list![index],
+                                      time: state.data!.info!.time!,
+                                      onDoubleTap: () {
+                                        widget.addedToFavorite();
+                                        bloc.add(AddCryptoToFavoriteEvent(cryptoId: state.list![index].id!));
+                                      },
+                                    ),
+                                  )
+                                  : CryptoItem(
+                                    crypto: state.list![index],
+                                    time: state.data!.info!.time!,
+                                    onDoubleTap: () {
+                                      widget.addedToFavorite();
+                                      bloc.add(AddCryptoToFavoriteEvent(cryptoId: state.list![index].id!));
+                                    },
+                                  );
                             },
                           );
                         }

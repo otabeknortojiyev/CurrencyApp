@@ -81,27 +81,26 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       extendBody: true,
       body: NotificationListener<ScrollNotification>(
         onNotification: onScrollNotification,
-        child: IndexedStack(
-          index: _bottomNavIndex,
-          children: [
-            CurrencyPage(onScrollNotification: onScrollNotification, addedToFavorite: _toggleFavorite),
-            CryptoPage(onScrollNotification: onScrollNotification, addedToFavorite: _toggleFavorite),
-            FavoritePage(
-              onScrollNotification: onScrollNotification,
-              popFromCurrency: () {
-                setState(() {
-                  _bottomNavIndex = 0;
-                });
-              },
-              popFromCrypto: () {
-                setState(() {
-                  _bottomNavIndex = 1;
-                });
-              },
-            ),
-            ProfilePage(onScrollNotification: onScrollNotification),
-          ],
-        ),
+        child:
+            _bottomNavIndex == 0
+                ? CurrencyPage(onScrollNotification: onScrollNotification, addedToFavorite: _toggleFavorite)
+                : _bottomNavIndex == 1
+                ? CryptoPage(onScrollNotification: onScrollNotification, addedToFavorite: _toggleFavorite)
+                : _bottomNavIndex == 2
+                ? FavoritePage(
+                  onScrollNotification: onScrollNotification,
+                  popFromCurrency: () {
+                    setState(() {
+                      _bottomNavIndex = 0;
+                    });
+                  },
+                  popFromCrypto: () {
+                    setState(() {
+                      _bottomNavIndex = 1;
+                    });
+                  },
+                )
+                : ProfilePage(onScrollNotification: onScrollNotification),
       ),
       bottomNavigationBar: AnimatedBottomNavigationBar.builder(
         itemCount: iconListActive.length,

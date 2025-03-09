@@ -67,7 +67,6 @@ class FavoritePageBloc extends Bloc<FavoritePageEvent, FavoritePageState> {
       try {
         emit(state.copyWith(cryptoStatus: FavoriteCryptoPageStatus.loading));
         var cryptos = await repository.getAllCrypto();
-        print("SQFLITE ISHLAYAPTI");
         if (cryptos.isEmpty) {
           emit(state.copyWith(cryptoStatus: FavoriteCryptoPageStatus.success, cryptoData: []));
           return;

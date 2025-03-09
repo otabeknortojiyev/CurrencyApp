@@ -34,3 +34,5 @@ class AddCurrencyToFavoriteEvent extends CurrencyPageEvent {
 
   AddCurrencyToFavoriteEvent({required this.ccy});
 }
+
+class DoNotShowCaseViewEvent extends CurrencyPageEvent {}
