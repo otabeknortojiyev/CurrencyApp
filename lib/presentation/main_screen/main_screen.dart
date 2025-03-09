@@ -120,7 +120,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                             addedToFavorite
                                 ? [
                                   BoxShadow(
-                                    color: Colors.green.withOpacity(_favoriteIconAnimation.value),
+                                    color: Colors.green.withValues(alpha: _favoriteIconAnimation.value),
                                     blurRadius: 10.0 * _favoriteIconAnimation.value,
                                     spreadRadius: 2.0 * _favoriteIconAnimation.value,
                                   ),

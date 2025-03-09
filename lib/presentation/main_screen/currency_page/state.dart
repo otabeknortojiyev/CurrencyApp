@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import '../../../data/source/remote/response/currency_response.dart';
 
 class CurrencyPageState {
